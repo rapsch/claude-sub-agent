@@ -180,6 +180,7 @@ spec-validator: Validate project in ./my-app/
 ## Quality Gates Explained
 
 ### Gate 1: Planning Quality (After spec-planner)
+
 ```yaml
 Criteria:
   - Requirements completeness ≥ 95%
@@ -193,6 +194,7 @@ Failure Actions:
 ```
 
 ### Gate 2: Development Quality (After spec-tester)
+
 ```yaml
 Criteria:
   - All tests passing
@@ -206,6 +208,7 @@ Failure Actions:
 ```
 
 ### Gate 3: Production Readiness (After spec-validator)
+
 ```yaml
 Criteria:
   - Overall quality score ≥ 85%
@@ -336,24 +339,28 @@ Create test project
 ## Best Practices
 
 ### 1. **Project Preparation**
+
 - Have a clear project description
 - Gather any existing documentation
 - Define success criteria upfront
 - Set appropriate quality thresholds
 
 ### 2. **Workflow Optimization**
+
 - Use parallel execution for large projects
 - Skip agents when appropriate
 - Cache results for iterative development
 - Monitor resource usage
 
 ### 3. **Quality Management**
+
 - Don't lower thresholds without good reason
 - Address quality issues immediately
 - Use feedback loops effectively
 - Track quality trends over time
 
 ### 4. **Collaboration**
+
 - Integrate specialized agents when needed
 - Maintain clear communication channels
 - Document decisions and changes
@@ -397,7 +404,7 @@ custom_validators:
 name: Spec Workflow
 on: [push]
 jobs:
-  spec-workflow:
+  agent-workflow:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

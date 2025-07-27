@@ -7,15 +7,19 @@ The Spec Agent Workflow System combines BMAD's proven multi-agent architecture w
 ## Core Philosophy
 
 ### 1. **Specialized Expertise**
+
 Each agent is a domain expert focused on specific aspects of the development lifecycle, operating in isolated contexts to maintain clarity and prevent cross-contamination of concerns.
 
 ### 2. **Document-Driven Workflow**
+
 Every phase produces structured artifacts that serve as inputs for subsequent phases, ensuring traceability and consistency throughout the development process.
 
 ### 3. **Quality Gates**
+
 Automated validation checkpoints ensure each phase meets defined quality standards before proceeding, with intelligent feedback loops for continuous improvement.
 
 ### 4. **Iterative Excellence**
+
 The system supports both linear progression and iterative refinement, automatically cycling through improvement loops until quality thresholds are met.
 
 ## System Architecture
@@ -70,6 +74,7 @@ graph TD
 ### Planning Phase Agents
 
 #### 1. spec-analyst
+
 - **Purpose**: Requirements analysis and project scoping
 - **Responsibilities**:
   - Elicit and clarify requirements
@@ -79,6 +84,7 @@ graph TD
 - **Outputs**: `requirements.md`, `project-brief.md`, `user-stories.md`
 
 #### 2. spec-architect  
+
 - **Purpose**: System design and technical architecture
 - **Responsibilities**:
   - Design system architecture
@@ -88,6 +94,7 @@ graph TD
 - **Outputs**: `architecture.md`, `tech-stack.md`, `api-spec.md`
 
 #### 3. spec-planner
+
 - **Purpose**: Task breakdown and implementation planning
 - **Responsibilities**:
   - Create detailed task lists
@@ -99,6 +106,7 @@ graph TD
 ### Development Phase Agents
 
 #### 4. spec-developer
+
 - **Purpose**: Code implementation
 - **Responsibilities**:
   - Implement features based on specifications
@@ -108,6 +116,7 @@ graph TD
 - **Outputs**: Source code files, unit tests
 
 #### 5. spec-tester
+
 - **Purpose**: Comprehensive testing
 - **Responsibilities**:
   - Write integration tests
@@ -119,6 +128,7 @@ graph TD
 ### Validation Phase Agents
 
 #### 6. spec-reviewer
+
 - **Purpose**: Code quality review
 - **Responsibilities**:
   - Code review for best practices
@@ -128,6 +138,7 @@ graph TD
 - **Outputs**: `review-report.md`, refactored code
 
 #### 7. spec-validator
+
 - **Purpose**: Final quality validation
 - **Responsibilities**:
   - Verify requirements compliance
@@ -139,6 +150,7 @@ graph TD
 ### Orchestration Agent
 
 #### 8. spec-orchestrator
+
 - **Purpose**: Workflow coordination and management
 - **Responsibilities**:
   - Route tasks to appropriate agents
@@ -150,6 +162,7 @@ graph TD
 ## Quality Gate System
 
 ### Gate 1: Planning Quality (After spec-planner)
+
 - **Criteria**:
   - Requirements completeness ≥ 95%
   - Architecture feasibility validated
@@ -158,6 +171,7 @@ graph TD
 - **Action**: If fail, return to spec-analyst with specific feedback
 
 ### Gate 2: Development Quality (After spec-tester)
+
 - **Criteria**:
   - All tests passing
   - Code coverage ≥ 80%
@@ -166,6 +180,7 @@ graph TD
 - **Action**: If fail, return to spec-developer with issues list
 
 ### Gate 3: Production Readiness (After spec-validator)
+
 - **Criteria**:
   - Overall quality score ≥ 95%
   - All requirements implemented
@@ -179,13 +194,13 @@ graph TD
 
 ```bash
 # Start a new project workflow
-/spec-workflow <project-description>
+/agent-workflow <project-description>
 
 # Start with existing requirements
-/spec-workflow --from-requirements <path/to/requirements.md>
+/agent-workflow --from-requirements <path/to/requirements.md>
 
 # Start from specific phase
-/spec-workflow --phase development --from-artifacts <path/to/artifacts>
+/agent-workflow --phase development --from-artifacts <path/to/artifacts>
 ```
 
 ### Control Commands
@@ -195,13 +210,13 @@ graph TD
 /spec-status
 
 # Skip specific agents
-/spec-workflow --skip-agents spec-analyst,spec-tester
+/agent-workflow --skip-agents spec-analyst,spec-tester
 
 # Set custom quality thresholds
-/spec-workflow --quality-threshold 90
+/agent-workflow --quality-threshold 90
 
 # Enable verbose mode
-/spec-workflow --verbose
+/agent-workflow --verbose
 ```
 
 ### Phase-Specific Commands
@@ -220,16 +235,19 @@ graph TD
 ## Integration with Existing Tools
 
 ### IDE Integration
+
 - Works with any IDE supporting Claude Code
 - Automatic file management and organization
 - Real-time progress tracking
 
 ### Version Control
+
 - Git-friendly artifact generation
 - Automatic commit suggestions
 - Branch management recommendations
 
 ### CI/CD Pipeline
+
 - Generated test suites ready for CI
 - Deployment scripts for various platforms
 - Environment configuration files
@@ -237,18 +255,21 @@ graph TD
 ## Best Practices
 
 ### 1. **Project Preparation**
+
 - Clear project description
 - Existing documentation (if any)
 - Technical constraints defined
 - Success criteria established
 
 ### 2. **Workflow Execution**
+
 - Let agents complete their phases
 - Review artifacts between phases
 - Provide feedback when prompted
 - Trust the quality gates
 
 ### 3. **Customization**
+
 - Adjust quality thresholds based on project needs
 - Skip agents for simpler projects
 - Add custom validation criteria
@@ -257,21 +278,24 @@ graph TD
 ## Example Usage
 
 ### Simple Web Application
+
 ```bash
-/spec-workflow Create a todo list web app with React frontend and Node.js backend, 
+/agent-workflow Create a todo list web app with React frontend and Node.js backend, 
 supporting user authentication, task CRUD operations, and real-time updates
 ```
 
 ### Enterprise System
+
 ```bash
-/spec-workflow --quality-threshold 98 --verbose 
+/agent-workflow --quality-threshold 98 --verbose 
 Develop an enterprise resource planning system with microservices architecture, 
 supporting inventory management, order processing, and financial reporting
 ```
 
 ### API-Only Service
+
 ```bash
-/spec-workflow --skip-agents spec-analyst 
+/agent-workflow --skip-agents spec-analyst 
 --from-requirements ./requirements/api-spec.md
 Build a RESTful API service for payment processing with Stripe integration
 ```
@@ -279,18 +303,21 @@ Build a RESTful API service for payment processing with Stripe integration
 ## Advantages Over Traditional Development
 
 ### Compared to Manual Development
+
 - **Speed**: 10x faster from concept to code
 - **Consistency**: Standardized artifacts and patterns
 - **Quality**: Automated quality gates ensure standards
 - **Documentation**: Comprehensive docs generated automatically
 
 ### Compared to Single AI Agent
+
 - **Expertise**: Specialized agents for each domain
 - **Context**: Clean, focused contexts prevent confusion
 - **Scalability**: Parallel processing capabilities
 - **Reliability**: Quality gates catch issues early
 
 ### Compared to BMAD Alone
+
 - **Automation**: Fully automated workflow execution
 - **Integration**: Native Claude Code Sub-Agents support
 - **Flexibility**: Easy to customize and extend

@@ -8,6 +8,7 @@ A comprehensive AI-driven development workflow system built on Claude Code's Sub
 - [System Architecture](#system-architecture)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
+- [Slash Command Usage](#slash-command-usage)
 - [How It Works](#how-it-works)
 - [Agent Reference](#agent-reference)
 - [Usage Examples](#usage-examples)
@@ -92,22 +93,28 @@ graph TD
    # Individual agent files are available in the agents/ directory
    ```
 
-2. **Copy agents to your project's Claude Code directory**
+2. **Copy agents and slash command to your project's Claude Code directory**
 
    ```bash
-   # Create .claude/agents directory in your project
-   mkdir -p .claude/agents
+   # Create .claude directory structure in your project
+   mkdir -p .claude/agents .claude/commands
    
    # Copy agents from this repository
    cp agents/* .claude/agents/
+   
+   # Copy slash command
+   cp commands/agent-workflow.md .claude/commands/
    ```
 
 3. **Verify installation**
 
    Your project structure should look like this:
-   ```
+
+   ```text
    your-project/
    ├── .claude/
+   │   ├── commands/
+   │   │   └── agent-workflow.md   # Slash command
    │   └── agents/
    │       ├── spec-analyst.md
    │       ├── spec-architect.md
@@ -168,6 +175,42 @@ Project complete! Generated artifacts:
 - Test suites (85% coverage)
 - Documentation
 ```
+
+## Slash Command Usage
+
+For the quickest way to start a complete workflow, use our custom slash command:
+
+### Basic Usage
+
+```bash
+/agent-workflow "Create a task management web application with user authentication and real-time updates"
+```
+
+### Advanced Usage
+
+```bash
+# High-quality enterprise project
+/agent-workflow "Develop a CRM system with customer management and analytics" --quality=95
+
+# Quick prototype development  
+/agent-workflow "Simple personal blog website" --quality=75 --skip-agent=spec-tester
+
+# From existing requirements
+/agent-workflow "Mobile app based on existing requirements" --skip-agent=spec-analyst
+
+# Specific phases only
+/agent-workflow "Microservices e-commerce platform" --phase=planning
+```
+
+### Command Options
+
+- `--quality=[75-95]`: Set quality gate threshold
+- `--skip-agent=[agent-name]`: Skip specific agents
+- `--phase=[planning|development|validation|all]`: Run specific phases
+- `--output-dir=[path]`: Specify output directory
+- `--language=[zh|en]`: Documentation language
+
+**📖 For complete slash command documentation, see [commands/agent-workflow.md](./commands/agent-workflow.md)**
 
 ## How It Works
 

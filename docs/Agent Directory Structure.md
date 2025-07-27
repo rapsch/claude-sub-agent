@@ -7,9 +7,9 @@ This directory contains specialized AI agents for the Claude Sub-Agent system. T
 ```
 agent/
 ├── documentation/               # System documentation and guides
-│   ├── spec-workflow-system.md     # Complete workflow system documentation
-│   ├── spec-workflow-usage-guide.md # Usage examples and best practices
-|   ├── spec-workflow-system.md # 
+│   ├── agent-workflow-system.md     # Complete workflow system documentation
+│   ├── agent-workflow-usage-guide.md # Usage examples and best practices
+|   ├── agent-workflow-system.md # 
 ├── spec-agents/                 # Spec workflow agents
 │   ├── spec-orchestrator.md    # Master workflow coordinator
 │   ├── spec-analyst.md         # Requirements analysis specialist
