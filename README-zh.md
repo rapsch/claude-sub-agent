@@ -86,7 +86,7 @@ graph TD
 
    ```bash
    # 方式 1：克隆仓库
-   git clone https://github.com/yourusername/claude-sub-agent.git
+   git clone https://github.com/zhsama/claude-sub-agent.git
    cd claude-sub-agent
    
    # 方式 2：下载所需的特定代理
@@ -483,4 +483,4 @@ MIT 许可证 - 详见 LICENSE 文件
 
 - [Claude Code 文档](https://docs.anthropic.com/en/docs/claude-code)
 - [Sub-Agents 指南](https://docs.anthropic.com/en/docs/claude-code/sub-agents)
-- [项目问题](https://github.com/yourusername/claude-sub-agent/issues)
+- [项目问题](https://github.com/zhsama/claude-sub-agent/issues)

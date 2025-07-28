@@ -86,7 +86,7 @@ graph TD
 
    ```bash
    # Option 1: Clone the repository
-   git clone https://github.com/yourusername/claude-sub-agent.git
+   git clone https://github.com/zhsama/claude-sub-agent.git
    cd claude-sub-agent
    
    # Option 2: Download specific agents you need
