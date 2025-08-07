@@ -97,10 +97,10 @@ graph TD
 
    ```bash
    # 在你的项目中创建 .claude 目录结构
-   mkdir -p .claude/agents
+   mkdir -p .claude/agents .claude/commands
    
-   # 从此仓库复制代理
-   cp agents/* .claude/agents/
+   # 从分类目录复制所有代理
+   cp -r agents/*/*.md .claude/agents/
    
    # 复制 slash 命令
    cp commands/agent-workflow.md .claude/commands/
@@ -108,7 +108,33 @@ graph TD
 
 3. **验证安装**
 
-   你的项目结构应该如下所示：
+   **仓库结构：**
+
+   ```text
+   claude-sub-agent/
+   ├── agents/
+   │   ├── spec-agents/         # 核心工作流代理
+   │   │   ├── spec-analyst.md
+   │   │   ├── spec-architect.md
+   │   │   ├── spec-developer.md
+   │   │   ├── spec-orchestrator.md
+   │   │   ├── spec-planner.md
+   │   │   ├── spec-reviewer.md
+   │   │   ├── spec-tester.md
+   │   │   └── spec-validator.md
+   │   ├── backend/             # 后端专家
+   │   │   └── senior-backend-architect.md
+   │   ├── frontend/            # 前端专家
+   │   │   └── senior-frontend-architect.md
+   │   ├── ui-ux/              # 设计专家
+   │   │   └── ui-ux-master.md
+   │   └── utility/             # 工具代理
+   │       └── refactor-agent.md
+   └── commands/
+       └── agent-workflow.md    # Slash 命令
+   ```
+
+   **安装后你的项目结构：**
 
    ```text
    your-project/
@@ -124,7 +150,10 @@ graph TD
    │       ├── spec-reviewer.md
    │       ├── spec-tester.md
    │       ├── spec-validator.md
-   │       └── ... (其他代理)
+   │       ├── senior-backend-architect.md
+   │       ├── senior-frontend-architect.md
+   │       ├── ui-ux-master.md
+   │       └── refactor-agent.md
    └── ... (你的项目文件)
    ```
 
@@ -180,7 +209,7 @@ Claude (spec-orchestrator)：正在启动个人博客平台的工作流...
 
 使用我们的自定义 slash 命令，这是启动完整工作流最快的方式：
 
-### 基本使用
+### Slash 命令基本用法
 
 ```bash
 /agent-workflow "创建一个带用户认证和实时更新功能的任务管理 Web 应用"
@@ -257,7 +286,17 @@ Claude (spec-orchestrator)：正在启动个人博客平台的工作流...
 
 ## Agent 参考
 
-### 工作流代理
+### 代理分类系统
+
+我们的代理按专业类别组织，以便更好地管理和提供领域专长：
+
+- **spec-agents/**: 核心工作流编排代理
+- **backend/**: 后端系统专家
+- **frontend/**: 前端开发专家
+- **ui-ux/**: 用户体验和设计专家
+- **utility/**: 通用工具代理
+
+### 核心工作流代理 (spec-agents/)
 
 | 代理 | 用途 | 输入 | 输出 |
 |------|------|------|------|
@@ -270,14 +309,31 @@ Claude (spec-orchestrator)：正在启动个人博客平台的工作流...
 | spec-reviewer | 代码审查 | 代码 | 审查报告、改进建议 |
 | spec-validator | 最终验证 | 所有产物 | 验证报告、质量分数 |
 
-### 专业代理
+### 按类别分类的专业代理
+
+#### 后端专家 (backend/)
 
 | 代理 | 领域 | 集成点 |
-|------|------|--------|
-| ui-ux-master | UI/UX 设计 | 规划阶段 |
-| senior-backend-architect | 后端系统 | 架构阶段 |
-| senior-frontend-architect | 前端系统 | 开发阶段 |
-| refactor-agent | 代码质量 | 任何阶段 |
+|------|------|---------|
+| senior-backend-architect | 后端系统与架构 | 架构/开发阶段 |
+
+#### 前端专家 (frontend/)
+
+| 代理 | 领域 | 集成点 |
+|------|------|---------|
+| senior-frontend-architect | 前端系统与架构 | 开发阶段 |
+
+#### UI/UX 专家 (ui-ux/)
+
+| 代理 | 领域 | 集成点 |
+|------|------|---------|
+| ui-ux-master | 用户体验与界面设计 | 规划/开发阶段 |
+
+#### 工具代理 (utility/)
+
+| 代理 | 领域 | 集成点 |
+|------|------|---------|
+| refactor-agent | 代码质量与重构 | 任何阶段 |
 
 ## 使用示例
 

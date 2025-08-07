@@ -99,8 +99,8 @@ graph TD
    # Create .claude directory structure in your project
    mkdir -p .claude/agents .claude/commands
    
-   # Copy agents from this repository
-   cp agents/* .claude/agents/
+   # Copy all agents from categorized directories
+   cp -r agents/*/*.md .claude/agents/
    
    # Copy slash command
    cp commands/agent-workflow.md .claude/commands/
@@ -108,7 +108,33 @@ graph TD
 
 3. **Verify installation**
 
-   Your project structure should look like this:
+   **Repository Structure:**
+   
+   ```text
+   claude-sub-agent/
+   ├── agents/
+   │   ├── spec-agents/         # Core workflow agents
+   │   │   ├── spec-analyst.md
+   │   │   ├── spec-architect.md
+   │   │   ├── spec-developer.md
+   │   │   ├── spec-orchestrator.md
+   │   │   ├── spec-planner.md
+   │   │   ├── spec-reviewer.md
+   │   │   ├── spec-tester.md
+   │   │   └── spec-validator.md
+   │   ├── backend/             # Backend specialists
+   │   │   └── senior-backend-architect.md
+   │   ├── frontend/            # Frontend specialists
+   │   │   └── senior-frontend-architect.md
+   │   ├── ui-ux/              # Design specialists
+   │   │   └── ui-ux-master.md
+   │   └── utility/             # Utility agents
+   │       └── refactor-agent.md
+   └── commands/
+       └── agent-workflow.md    # Slash command
+   ```
+   
+   **Your project structure after installation:**
 
    ```text
    your-project/
@@ -124,7 +150,10 @@ graph TD
    │       ├── spec-reviewer.md
    │       ├── spec-tester.md
    │       ├── spec-validator.md
-   │       └── ... (other agents)
+   │       ├── senior-backend-architect.md
+   │       ├── senior-frontend-architect.md
+   │       ├── ui-ux-master.md
+   │       └── refactor-agent.md
    └── ... (your project files)
    ```
 
@@ -257,7 +286,17 @@ Agents communicate through structured artifacts:
 
 ## Agent Reference
 
-### Workflow Agents
+### Agent Classification System
+
+Our agents are organized into specialized categories for better organization and domain expertise:
+
+- **spec-agents/**: Core workflow orchestration agents
+- **backend/**: Backend system specialists
+- **frontend/**: Frontend development specialists  
+- **ui-ux/**: User experience and design specialists
+- **utility/**: General-purpose utility agents
+
+### Core Workflow Agents (spec-agents/)
 
 | Agent | Purpose | Inputs | Outputs |
 |-------|---------|--------|---------|
@@ -270,14 +309,27 @@ Agents communicate through structured artifacts:
 | spec-reviewer | Code review | Code | Review report, improvements |
 | spec-validator | Final validation | All artifacts | Validation report, quality score |
 
-### Specialist Agents
+### Specialist Agents by Category
 
+#### Backend Specialists (backend/)
 | Agent | Domain | Integration Point |
-|-------|--------|-------------------|
-| ui-ux-master | UI/UX Design | Planning phase |
-| senior-backend-architect | Backend Systems | Architecture phase |
-| senior-frontend-architect | Frontend Systems | Development phase |
-| refactor-agent | Code Quality | Any phase |
+|-------|--------|-----------|
+| senior-backend-architect | Backend Systems & Architecture | Architecture/Development phase |
+
+#### Frontend Specialists (frontend/)
+| Agent | Domain | Integration Point |
+|-------|--------|-----------|
+| senior-frontend-architect | Frontend Systems & Architecture | Development phase |
+
+#### UI/UX Specialists (ui-ux/)
+| Agent | Domain | Integration Point |
+|-------|--------|-----------|
+| ui-ux-master | User Experience & Interface Design | Planning/Development phase |
+
+#### Utility Agents (utility/)
+| Agent | Domain | Integration Point |
+|-------|--------|-----------|
+| refactor-agent | Code Quality & Refactoring | Any phase |
 
 ## Usage Examples
 
