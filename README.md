@@ -106,10 +106,26 @@ graph TD
    cp commands/agent-workflow.md .claude/commands/
    ```
 
-3. **Verify installation**
+3. **Add RULES to CLAUDE.md**
+
+   ```md
+   ## Project Documentation Conventions (Important)
+
+   **Documentation Files:** All new documentation or task files must be saved under the `docs/` folder in this repository.For example:
+
+   - **Tasks & TODOs**: Save in `docs/{YYYY_MM_DD}/tasks/` (e.g., `docs/t2025_08_08/asks/ReleaseTodo.md` for a release checklist).
+   - **Requirements/Specs**: Save in `docs/{YYYY_MM_DD}/specs/` (e.g., `docs/2025_08_08/specs/AuthModuleRequirements.md`).
+   - **Design Docs**: Save in `docs/{YYYY_MM_DD}/design/` (e.g., `docs/2025_08_08/design/ArchitectureOverview.md`).
+   - **Code Files:** Follow the project structure (place new code in the appropriate src/module folder as discussed).
+   - **Tests:** Put new test files under the `tests/` directory, mirroring the code structure.
+
+   > **Important:** When creating a new file, ensure the directory exists or create it. Never default to the root directory for these files.
+   ```
+
+4. **Verify installation**
 
    **Repository Structure:**
-   
+
    ```text
    claude-sub-agent/
    ├── agents/
@@ -132,8 +148,9 @@ graph TD
    │       └── refactor-agent.md
    └── commands/
        └── agent-workflow.md    # Slash command
+   ├── CLAUDE.md
    ```
-   
+
    **Your project structure after installation:**
 
    ```text
@@ -154,6 +171,7 @@ graph TD
    │       ├── senior-frontend-architect.md
    │       ├── ui-ux-master.md
    │       └── refactor-agent.md
+   ├── CLAUDE.md
    └── ... (your project files)
    ```
 
@@ -312,21 +330,25 @@ Our agents are organized into specialized categories for better organization and
 ### Specialist Agents by Category
 
 #### Backend Specialists (backend/)
+
 | Agent | Domain | Integration Point |
 |-------|--------|-----------|
 | senior-backend-architect | Backend Systems & Architecture | Architecture/Development phase |
 
 #### Frontend Specialists (frontend/)
+
 | Agent | Domain | Integration Point |
 |-------|--------|-----------|
 | senior-frontend-architect | Frontend Systems & Architecture | Development phase |
 
 #### UI/UX Specialists (ui-ux/)
+
 | Agent | Domain | Integration Point |
 |-------|--------|-----------|
 | ui-ux-master | User Experience & Interface Design | Planning/Development phase |
 
 #### Utility Agents (utility/)
+
 | Agent | Domain | Integration Point |
 |-------|--------|-----------|
 | refactor-agent | Code Quality & Refactoring | Any phase |

@@ -106,7 +106,23 @@ graph TD
    cp commands/agent-workflow.md .claude/commands/
    ```
 
-3. **验证安装**
+3. **添加规则到 CLAUDE.md**
+
+   ```md
+   ## 项目文档约定 (重要)
+
+   **文档文件：** 所有新的文档或任务文件都必须保存在本仓库的 `docs/` 文件夹下。例如：
+
+   - **任务与待办事项**：保存在 `docs/{YYYY_MM_DD}/tasks/` (例如 `docs/2025_08_08/tasks/ReleaseTodo.md` for a release checklist).
+   - **需求/规格**：保存在 `docs/{YYYY_MM_DD}/specs/` (例如 `docs/2025_08_08/specs/AuthModuleRequirements.md`)。
+   - **设计文档**：保存在 `docs/{YYYY_MM_DD}/design/` (例如 `docs/2025_08_08/design/ArchitectureOverview.md`)。
+   - **代码文件：** 遵循项目结构（按讨论将新代码放在相应的 src/module 文件夹中）。
+   - **测试文件：** 将新测试文件放在 `tests/` 目录下，与代码结构保持一致。
+
+   > **重要提示：** 创建新文件时，请确保目录存在，如果不存在请先创建。切勿将这些文件默认保存在根目录。
+   ```
+
+4. **验证安装**
 
    **仓库结构：**
 
@@ -132,6 +148,7 @@ graph TD
    │       └── refactor-agent.md
    └── commands/
        └── agent-workflow.md    # Slash 命令
+   ├── CLAUDE.md
    ```
 
    **安装后你的项目结构：**
@@ -154,6 +171,7 @@ graph TD
    │       ├── senior-frontend-architect.md
    │       ├── ui-ux-master.md
    │       └── refactor-agent.md
+   ├── CLAUDE.md
    └── ... (你的项目文件)
    ```
 
@@ -207,9 +225,9 @@ Claude (spec-orchestrator)：正在启动个人博客平台的工作流...
 
 ## Slash 命令使用
 
-使用我们的自定义 slash 命令，这是启动完整工作流最快的方式：
+为了最快地启动完整的工作流，请使用我们的自定义斜杠命令：
 
-### Slash 命令基本用法
+### 基本用法
 
 ```bash
 /agent-workflow "创建一个带用户认证和实时更新功能的任务管理 Web 应用"
