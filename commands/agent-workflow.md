@@ -7,12 +7,6 @@ allowed-tools: ["Task", "Read", "Write", "Edit", "MultiEdit", "Grep", "Glob", "T
 
 Execute complete development workflow using intelligent sub-agent chaining with quality gates.
 
-## Usage
-
-```bash
-/agent-workflow <FEATURE_DESCRIPTION>
-```
-
 ## Context
 
 - Feature to develop: $ARGUMENTS
@@ -34,6 +28,7 @@ First use the spec-analyst sub agent to generate complete specifications for [$A
 ## Workflow Logic
 
 ### Quality Gate Mechanism
+
 - **Validation Score ≥95%**: Proceed to spec-tester sub agent
 - **Validation Score <95%**: Loop back to spec-analyst sub agent with feedback
 - **Maximum 3 iterations**: Prevent infinite loops
@@ -80,6 +75,7 @@ Starting automated development workflow with quality gates...
 ### 🎯 Phase 1: Specification Generation
 
 First use the **spec-analyst** sub agent to analyze requirements and generate:
+
 - Detailed requirements documentation
 - User stories with acceptance criteria
 - Technical constraints and assumptions
@@ -88,6 +84,7 @@ First use the **spec-analyst** sub agent to analyze requirements and generate:
 ### 🏗️ Phase 2: Architecture Design
 
 Then use the **spec-architect** sub agent to create:
+
 - System architecture design
 - API specifications and contracts
 - Technology stack decisions
@@ -97,6 +94,7 @@ Then use the **spec-architect** sub agent to create:
 ### 💻 Phase 3: Implementation
 
 Then use the **spec-developer** sub agent to:
+
 - Implement core functionality based on specifications
 - Follow best practices and coding standards
 - Create modular, maintainable code structure
@@ -105,6 +103,7 @@ Then use the **spec-developer** sub agent to:
 ### ✅ Phase 4: Quality Validation
 
 Then use the **spec-validator** sub agent to evaluate:
+
 - Code quality metrics (readability, maintainability)
 - Architecture compliance and best practices
 - Security vulnerabilities and performance issues
@@ -119,6 +118,7 @@ Then use the **spec-validator** sub agent to evaluate:
 ### 🧪 Phase 5: Test Generation (Final)
 
 Finally use the **spec-tester** sub agent to create:
+
 - Comprehensive unit test suite
 - Integration tests for key workflows
 - End-to-end test scenarios
@@ -148,3 +148,135 @@ project/
 ```
 
 **Begin execution now with the provided feature description and report progress after each sub-agent completion.**
+
+## Unified Document Storage Configuration
+
+### Project Document Storage Standards
+
+All agent-generated documents follow the unified storage standards below:
+
+#### Basic Configuration
+
+```yaml
+project-info:
+  name: "claude-sub-agent"
+  display-name: "Claude Sub-Agent Spec Workflow System"
+  version: "v1.0"
+  doc-root: "./claude/docs/"
+  legacy-root: "./claude/"
+```
+
+#### Path Generation Rules
+
+Claude Code automatically applies the following path generation logic:
+
+```
+./claude/docs/{YYYY}/{MM}/{DD}/{doc-type}/{subdirectory}/
+{agent}_{artifact}_{project}_{version}_{timestamp}.md
+```
+
+#### Agent Path Auto-Mapping
+
+```yaml
+agent-mappings:
+  # Spec Workflow Agents
+  spec-orchestrator: proj-docs/coordination/
+  spec-analyst: req-docs/analysis/
+  spec-architect: dev-docs/architecture/
+  spec-planner: proj-docs/planning/
+  spec-developer: dev-docs/implementation/
+  spec-tester: test-docs/comprehensive/
+  spec-reviewer: dev-docs/review/
+  spec-validator: proj-docs/validation/
+  
+  # Domain Specialists
+  senior-frontend-architect: dev-docs/frontend/
+  senior-backend-architect: dev-docs/backend/
+  ui-ux-master: dev-docs/design/
+  refactor-agent: dev-docs/refactoring/
+```
+
+#### Workflow Document Dependencies
+
+Claude Code automatically sets up the following document dependencies:
+
+```yaml
+workflow-dependencies:
+  spec-analyst: []
+  spec-architect: [requirements, user-stories]
+  spec-planner: [requirements, architecture]
+  spec-developer: [architecture, tasks]
+  spec-tester: [development-log, code-structure]
+  spec-reviewer: [implementation-notes, test-plan]
+  spec-validator: [review-report, test-cases]
+```
+
+#### Standard Metadata Template
+
+Each document will automatically include the following YAML frontmatter:
+
+```yaml
+---
+agent: {name of the invoked agent}
+project: claude-sub-agent
+version: v1.0
+created: {ISO8601 timestamp}
+workflow-id: {workflow ID}
+parent-docs: [{list of dependency documents}]
+quality-score: {quality score}
+status: draft|review|approved
+doc-type: {document type}
+path: {generated storage path}
+---
+```
+
+#### Quality Scoring Standards
+
+```yaml
+quality-thresholds:
+  planning-phase: 95%    # spec-analyst, spec-architect, spec-planner
+  development-phase: 85% # spec-developer, spec-tester
+  validation-phase: 95%  # spec-reviewer, spec-validator
+```
+
+#### Backward Compatibility
+
+The system automatically creates symbolic links to maintain backward compatibility:
+
+- `./claude/dev-docs/` → `./claude/docs/{latest}/dev-docs/`
+- `./claude/test-docs/` → `./claude/docs/{latest}/test-docs/`
+- `./claude/db-docs/` → `./claude/docs/{latest}/db-docs/`
+
+### Usage Instructions
+
+#### Automatic Path Generation
+
+When you invoke any agent, Claude Code will:
+
+1. Automatically identify agent type and determine document storage path
+2. Create necessary date and type directory structures
+3. Generate standardized file names and metadata
+4. Apply workflow dependency relationships
+5. Insert quality scoring framework
+
+#### Example Generated Paths
+
+```bash
+# Invoke spec-analyst
+Use spec-analyst: Analyze user authentication system requirements
+# Generated: ./claude/docs/2024/08/07/req-docs/analysis/
+#            spec-analyst_requirements_claude-sub-agent_v1.0_20240807_143025.md
+
+# Invoke spec-architect  
+Use spec-architect: Design microservices architecture
+# Generated: ./claude/docs/2024/08/07/dev-docs/architecture/
+#            spec-architect_architecture_claude-sub-agent_v1.0_20240807_143126.md
+```
+
+#### Manual Directory Creation (Optional)
+
+To manually create directory structure:
+
+```bash
+python scripts/create-doc-structure.py --config config/doc-storage-config.yaml
+```
