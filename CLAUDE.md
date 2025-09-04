@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Claude Sub-Agent Spec Workflow System - A comprehensive AI-driven development workflow system built on Claude Code's Sub-Agents feature. This system transforms project ideas into production-ready code through specialized AI agents working in coordinated phases.
 
+**Rails Specialization**: The system includes specialized Ruby on Rails agents and workflows, providing expert-level Rails development capabilities with Rails conventions, RSpec testing, and Rails-specific quality gates.
+
 ## Project Documentation Conventions (Important)
 
 **Documentation Files:** All new documentation or task files must be saved under the `docs/` folder in this repository.For example:
@@ -35,6 +37,25 @@ Use spec-architect: Design system architecture for microservices
 Use spec-developer: Implement user authentication based on specifications
 ```
 
+### Rails-Specific Workflow Execution
+
+```bash
+# Rails application development workflow
+/agent-workflow "Create a Rails e-commerce application with Stripe integration"
+
+# Rails-specific orchestration
+Use spec-orchestrator: Create a Rails SaaS application with multi-tenancy and Hotwire
+
+# Rails domain specialists
+Use rails-backend-architect: Design Rails backend architecture with ActiveRecord patterns
+Use rails-frontend-architect: Implement Hotwire frontend with Turbo and Stimulus
+Use rails-testing-specialist: Create comprehensive RSpec test suite with Factory Bot
+
+# Rails quality validation
+Use spec-tester: Generate Rails-specific tests (models, controllers, systems)
+Use spec-validator: Evaluate Rails code quality with Rubocop and Brakeman
+```
+
 ### Quality Gates and Testing
 
 ```bash
@@ -46,6 +67,26 @@ Use spec-developer: Implement user authentication based on specifications
 # Manual validation
 Use spec-validator: Evaluate code quality and provide scoring
 Use spec-tester: Generate comprehensive test suite for the implementation
+```
+
+### Rails Quality Gates and Testing
+
+```bash
+# Rails-specific quality gates with Rails tools:
+# Gate 1: Rails Planning Quality (95% threshold) - Rails architecture, gems, database design
+# Gate 2: Rails Development Quality (85% threshold) - Rubocop, RSpec coverage, Brakeman
+# Gate 3: Rails Production Readiness (95% threshold) - Rails deployment, monitoring
+
+# Rails quality validation commands
+rubocop --auto-correct              # Rails code quality and style
+bundle exec rspec --format progress # RSpec test execution
+bundle exec brakeman               # Rails security scanning
+rails test:system                  # Rails system tests
+rails db:migrate:status           # Rails migration status
+
+# Rails testing patterns
+Use rails-testing-specialist: Create RSpec tests for Rails models and controllers
+Use spec-tester: Generate Rails-specific test suites with Factory Bot
 ```
 
 ### Project Structure Operations
@@ -62,6 +103,28 @@ cp commands/agent-workflow.md .claude/commands/
 # Spec workflow agents: agents/spec-agents/
 # UI/UX agents: agents/ui-ux/
 # Utility agents: agents/utility/
+```
+
+### Rails Project Structure Operations
+
+```bash
+# Setup Rails project with agent system
+rails new my_app --database=postgresql --css=tailwind
+cd my_app
+mkdir -p .claude/agents .claude/commands
+cp /path/to/claude-sub-agent/agents/spec-agents/* .claude/agents/
+cp /path/to/claude-sub-agent/agents/backend/rails-* .claude/agents/
+cp /path/to/claude-sub-agent/agents/frontend/rails-* .claude/agents/
+cp /path/to/claude-sub-agent/agents/testing/rails-* .claude/agents/
+
+# Rails-specific agent organization:
+# rails-backend-architect.md     - Rails backend patterns and ActiveRecord
+# rails-frontend-architect.md    - Hotwire, Turbo, Stimulus patterns
+# rails-testing-specialist.md    - RSpec, Factory Bot, Rails testing
+# spec-orchestrator.md          - Rails workflow coordination
+# spec-developer.md             - Rails implementation specialist
+# spec-architect.md             - Rails system architecture
+# spec-tester.md                - Rails testing and quality
 ```
 
 ## System Architecture
@@ -105,6 +168,16 @@ The system follows a three-phase approach with quality gates:
 - senior-backend-architect: Go/TypeScript backend systems
 - ui-ux-master: UI/UX design and implementation
 
+**Rails Specialists**
+
+- rails-backend-architect: Ruby on Rails backend expert with ActiveRecord, services, jobs
+- rails-frontend-architect: Hotwire (Turbo + Stimulus) and Rails frontend specialist  
+- rails-testing-specialist: RSpec, Factory Bot, and Rails testing expert
+- spec-orchestrator: Rails workflow coordination with Rails-specific quality gates
+- spec-developer: Rails implementation specialist following Rails conventions
+- spec-architect: Rails system architecture designer
+- spec-tester: Rails testing and quality assurance specialist
+
 **Utility Agents**
 
 - refactor-agent: Code quality and refactoring specialist
@@ -118,6 +191,19 @@ Each phase includes automated quality gates with specific thresholds:
 - Code quality metrics and test coverage
 - Security vulnerability scanning
 - Production deployment readiness
+
+### Rails Quality Framework
+
+Rails-specific quality gates with Rails tools and conventions:
+
+- Rails requirements completeness with user stories and acceptance criteria
+- Rails architecture feasibility with MVC pattern compliance
+- Rails code quality with Rubocop style guide compliance
+- RSpec test coverage thresholds (>80% line coverage)
+- Rails security scanning with Brakeman vulnerability detection
+- Rails performance benchmarks and N+1 query prevention
+- Rails conventions compliance and best practices adherence
+- Rails production deployment readiness (Docker, Kamal, environment configs)
 
 ### Agent Communication Protocol
 
@@ -150,6 +236,41 @@ project/
 └── README.md              # Project documentation
 ```
 
+### Rails Expected Output Structure
+
+```
+rails_project/
+├── docs/
+│   ├── requirements.md      # Rails requirements with user stories
+│   ├── architecture.md      # Rails MVC architecture design
+│   ├── api-spec.md         # Rails API specifications and routes
+│   └── deployment.md       # Rails deployment and configuration guide
+├── app/
+│   ├── models/             # ActiveRecord models with associations
+│   ├── controllers/        # Rails controllers with actions
+│   ├── views/              # ERB/Haml templates with partials
+│   ├── services/           # Rails service objects for business logic
+│   ├── jobs/               # ActiveJob/Sidekiq background jobs
+│   ├── mailers/            # ActionMailer classes
+│   └── helpers/            # Rails view helpers
+├── config/
+│   ├── routes.rb           # Rails routing configuration
+│   ├── database.yml        # Database configuration
+│   └── application.rb      # Rails application configuration
+├── db/
+│   ├── migrate/            # ActiveRecord migrations
+│   └── seeds.rb            # Database seed data
+├── spec/
+│   ├── models/             # RSpec model tests
+│   ├── controllers/        # RSpec controller tests
+│   ├── systems/            # RSpec system/integration tests
+│   ├── jobs/               # RSpec background job tests
+│   └── support/            # RSpec support files and factories
+├── Gemfile                 # Rails gem dependencies
+├── Gemfile.lock           # Locked gem versions
+└── README.md              # Rails project documentation
+```
+
 ## Key Integration Points
 
 ### Slash Command Integration
@@ -167,6 +288,14 @@ The system uses Claude Code's sub-agent syntax for coordinated execution:
 
 ```
 First use the spec-analyst sub agent → then spec-architect sub agent → then spec-developer sub agent → then spec-validator sub agent → quality gate decision → if score ≥95% continue to spec-tester, otherwise loop back with feedback
+
+### Rails Sub-Agent Chain Process
+
+Rails-specific agent chain for Ruby on Rails applications:
+
+```
+First use the spec-analyst sub agent (Rails requirements) → then rails-backend-architect sub agent (Rails architecture) → then spec-developer sub agent (Rails implementation) → then rails-testing-specialist sub agent (RSpec tests) → Rails quality gate decision (Rubocop + Brakeman + RSpec coverage) → if score ≥85% continue to spec-validator, otherwise loop back with Rails-specific feedback
+```
 ```
 
 ### Quality Gate Mechanism
@@ -186,6 +315,16 @@ First use the spec-analyst sub agent → then spec-architect sub agent → then 
 - Trust the quality gate system for consistent standards
 - Review artifacts between phases for course correction
 
+### For Working with Rails Agents
+
+- Start with spec-orchestrator for complete Rails projects
+- Use rails-backend-architect for Rails backend architecture and ActiveRecord design
+- Use rails-frontend-architect for Hotwire (Turbo + Stimulus) frontend implementation
+- Use rails-testing-specialist for comprehensive RSpec test suites
+- Allow Rails agents to implement Rails conventions and best practices
+- Trust Rails-specific quality gates (Rubocop, Brakeman, RSpec coverage)
+- Review Rails artifacts (models, controllers, migrations) between phases
+
 ### For Project Setup
 
 - Copy all agents and slash command to project's .claude directory
@@ -193,12 +332,30 @@ First use the spec-analyst sub agent → then spec-architect sub agent → then 
 - Specify quality expectations (75% for prototypes, 95% for enterprise)
 - Include existing documentation when available
 
+### For Rails Project Setup
+
+- Copy Rails-specific agents to project's .claude directory (rails-backend-architect, rails-frontend-architect, rails-testing-specialist)
+- Provide Rails project descriptions with gem requirements and Rails version
+- Specify Rails quality expectations (80% RSpec coverage minimum, Rubocop compliance)
+- Include existing Rails documentation, schema, and routes when available
+- Set up Rails development environment (Ruby version, database, Redis for caching/jobs)
+- Configure Rails testing environment (RSpec, Factory Bot, database cleaner)
+
 ### For Customization
 
 - Adjust quality thresholds based on project needs
 - Skip agents for simpler projects (e.g., skip spec-analyst if requirements exist)
 - Use phase-specific execution for targeted improvements
 - Integrate with existing CI/CD workflows
+
+### For Rails Customization
+
+- Adjust Rails quality thresholds (RSpec coverage, Rubocop compliance) based on project needs
+- Skip Rails agents for simpler Rails projects (use spec-developer if Rails architecture exists)
+- Use Rails phase-specific execution for targeted Rails improvements
+- Integrate with Rails CI/CD workflows (GitHub Actions with Rails, Heroku, AWS deployment)
+- Customize Rails gem selection and Rails version based on project requirements
+- Configure Rails-specific tools (Brakeman security, SimpleCov coverage, Rails generators)
 
 ## Troubleshooting
 
@@ -208,9 +365,33 @@ First use the spec-analyst sub agent → then spec-architect sub agent → then 
 - **Quality Gate Failures**: Review specific criteria, allow agents to revise work
 - **Workflow Stuck**: Check orchestrator status, restart from last checkpoint
 
+### Rails Common Issues
+
+- **Rails Agent Not Found**: Verify Rails agents (rails-backend-architect, rails-frontend-architect, rails-testing-specialist) are in .claude/agents directory
+- **Rails Quality Gate Failures**: Check Rubocop violations, RSpec test failures, or Brakeman security issues
+- **Rails Workflow Stuck**: Check Rails database connection, gem compatibility, or Rails environment setup
+- **Rails Migration Issues**: Verify database is running and migrations are compatible with Rails version
+- **Rails Test Failures**: Check test database setup, Factory Bot configuration, and RSpec gems
+
 ### Debug Mode
 
 Enable verbose logging by requesting: "Use spec-orchestrator with debug mode and show all agent interactions"
+
+### Rails Debug Mode
+
+Enable Rails-specific debug logging:
+
+```bash
+# Request Rails debug mode
+"Use spec-orchestrator with Rails debug mode and show all Rails agent interactions"
+
+# Rails-specific debugging commands
+rails console                    # Rails console for debugging
+rails db:migrate:status         # Check migration status
+bundle exec rspec --format doc  # Detailed RSpec output
+rubocop --display-cop-names     # Detailed Rubocop violations
+brakeman --format json          # Detailed security scan results
+```
 
 ## Integration with External Systems
 
@@ -220,3 +401,14 @@ The system can be integrated with:
 - Custom quality gates and validation criteria  
 - Domain-specific workflows and specialized orchestrators
 - Existing development tools and frameworks
+
+## Rails Integration with External Systems
+
+The Rails agent system can be integrated with:
+
+- **GitHub Actions for Rails CI/CD**: Automated RSpec testing, Rubocop linting, Brakeman security scanning
+- **Rails Quality Gates**: Custom RSpec coverage thresholds, Rails conventions compliance, performance benchmarks
+- **Rails Deployment Systems**: Integration with Kamal, Capistrano, Heroku, AWS Rails deployments
+- **Rails Development Tools**: Integration with existing Rails gems, Redis, Sidekiq, PostgreSQL/MySQL
+- **Rails Monitoring**: New Relic, DataDog, Sentry integration for Rails application monitoring
+- **Rails Security**: Integration with Rails security gems (bundle-audit, strong_migrations, etc.)
